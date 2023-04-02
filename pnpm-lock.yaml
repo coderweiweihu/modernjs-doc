@@ -2,15 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@modern-js/doc-tools': ^2.11.0
-  react-jsx-runtime: 1.0.0-alpha.1
-  typescript: ^4
-
-dependencies:
-  react-jsx-runtime: 1.0.0-alpha.1
+  typescript: ^5.0.3
 
 devDependencies:
   '@modern-js/doc-tools': 2.11.0
-  typescript: 4.9.5
+  typescript: 5.0.3
 
 packages:
 
@@ -6372,10 +6368,6 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-jsx-runtime/1.0.0-alpha.1:
-    resolution: {integrity: sha512-xFNkPolRLBQxasX2UrOI+f7zqES8d4V6WXzaR/bZ39x2xhpuI01etl5Vy2G7FFE+gQcjcRZqICtXf/gvHOY/vg==}
-    dev: false
-
   /react-lazy-with-preload/2.2.1:
     resolution: {integrity: sha512-ONSb8gizLE5jFpdHAclZ6EAAKuFX2JydnFXPPPjoUImZlLjGtKzyBS8SJgJq7CpLgsGKh9QCZdugJyEEOVC16Q==}
     dev: true
@@ -7211,9 +7203,9 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /typescript/4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  /typescript/5.0.3:
+    resolution: {integrity: sha512-xv8mOEDnigb/tN9PSMTwSEqAnUvkoXMQlicOb0IUVDBSQCgBSaAAROUZYy2IcUy5qU6XajK5jjjO7TMWqBTKZA==}
+    engines: {node: '>=12.20'}
     hasBin: true
     dev: true
 
