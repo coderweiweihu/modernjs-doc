@@ -1,0 +1,193 @@
+---
+title: 面经篇
+---
+
+# {frontmatter.title}
+
+:::danger
+非常重要面试题、需要全部掌握
+:::
+
+> 前几天无意之中看到了一份面试题，闲来无事，想着尝试着做一做。一来看自己到底会不会，二来看看这面试题到底难不难，没想到，一入题目深似海。整个做完下来，给我的整体感觉就是这份试卷出的很用心，可以充分的考察面试者的前端基本功，话不多说，我们一起来看看吧。
+
+# 1、输出什么？
+
+```js
+const one = (false || {} || null);
+const two = (null || false || "");
+const three = ([] || 0 || true);
+
+A: fasle null []
+B: null "" true
+C: {} "" []
+D: null null true
+```
+
+# 2、输出什么？
+```js
+let obj = { greeting: 'Hey' };
+function foo(obj) {
+   obj = { greeting: 'Hello' };
+}
+foo(obj);
+console.log(obj.greeting);
+```
+
+# 3、输出什么？
+```js
+function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = 'Lydia';
+  let age = 21;
+}
+sayHi();
+```
+
+# 4、输出什么？
+```js
+console.log(`${(x => x)('I Love')} to program`);
+
+A: I Love to program
+B: undefined to program
+C: ${(x => x)('I Love')} to program
+D: TypeError
+```
+
+# 5、输出什么？
+```js
+function getAge(...args) {
+  console.log(typeof args);
+}
+getAge(21);
+
+A: "number"
+B: "array"
+C: "object"
+D: NaN
+```
+
+# 6、输出什么？
+```js
+const [y] = [1, 2, 3, 4, 5];
+console.log(y);
+```
+
+# 7、输出什么？
+```js
+const { name: myName } = { name: 'Lydia' };
+console.log(name);
+
+A: "Lydia"
+B: "myName"
+C: undefined
+D: ReferenceError
+```
+
+# 8、输出什么？
+```js
+const value = { number: 10 };
+const multiply = ( x = { ...value }) => {
+  console.log(x.number *= 2);
+}
+multiply();
+multiply();
+multiply(value)
+multiply(value);
+
+A: 20, 40, 80, 160
+B: 20, 40, 20, 40
+C: 20, 20, 20, 40
+D: NaN, NaN, 20, 40
+```
+
+# 9、输出什么？
+```js
+const fruit = ['banana', 'orange', 'apple'];
+fruit.slice(0, 1);
+fruit.splice(0, 1);
+fruit.unshift('grape');
+console.log(fruit);
+
+A: ['banana', 'orange', 'apple']
+B: ['orange', 'apple']
+C: ['grape', 'orange', 'apple']
+D: ['grape', 'banana', 'orange', 'apple']
+```
+
+# 10、输出什么？
+```js
+// counter.js
+let counter = 10;
+export default counter;
+
+// index.js
+import myCounter from './counter';
+myCounter += 1;
+
+console.log(myCounter);
+
+A: 10
+B: 11
+C: Error
+D: NaN
+```
+
+# 11、 结果是什么？
+```js
+console.log(Promise.resolve(5));
+
+A: 5
+B: Promise {<pending>: 5}
+C: Promise {<fulfilled>: 5}
+D: Error
+```
+
+# 12、我们怎样才能在index.js中调用sum.js中的sum?
+```js
+// sum.js
+export default function sum(x) {
+  return x + x;
+}
+
+// index.js
+import * as sum from "./sum.js";
+
+// 在index.js文件中怎么使用sum.js文件中的sum函数？
+A: sum(4)
+B: sum.sum(4)
+C: sum.default(4)
+D: 默认导出不用 * 来导入，只能具名导出
+```
+
+# 13、返回值是什么？
+```js
+const firstPromise = new Promise((res, reject) => {
+  setTimeout(res, 500, 'one');
+});
+const secondPromise = new Promise((res, reject) => {
+  setTimeout(res, 100, 'two');
+})
+Promise.race([firstPromise, secondPromise]).then(res => {
+  console.log(res);
+})
+
+A: "one"
+B: "two"
+C: "two" "one"
+D: "one" "two"
+```
+
+# 14、输出什么？
+```js
+let count = 0;
+const nums = [0, 1, 2, 3];
+nums.forEach(num => {
+  if (num) count += 1;
+});
+
+console.log(count);
+```
+> 要求：15分钟做完。注：有的题目比较简单，有的选项没有写下来，需要自己去思考
+
+整个题目做下来的感觉就是考察js的基本功，考察的点比较细致，如果基础功不扎实的小伙伴可能会踩坑，对于基础比较扎实的同学可以来巩固一下了。看了很多面试题，还是这篇比较有意思。
