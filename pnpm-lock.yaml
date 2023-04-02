@@ -2,7 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@modern-js/doc-tools': ^2.11.0
+  react-jsx-runtime: 1.0.0-alpha.1
   typescript: ^4
+
+dependencies:
+  react-jsx-runtime: 1.0.0-alpha.1
 
 devDependencies:
   '@modern-js/doc-tools': 2.11.0
@@ -6367,6 +6371,10 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-jsx-runtime/1.0.0-alpha.1:
+    resolution: {integrity: sha512-xFNkPolRLBQxasX2UrOI+f7zqES8d4V6WXzaR/bZ39x2xhpuI01etl5Vy2G7FFE+gQcjcRZqICtXf/gvHOY/vg==}
+    dev: false
 
   /react-lazy-with-preload/2.2.1:
     resolution: {integrity: sha512-ONSb8gizLE5jFpdHAclZ6EAAKuFX2JydnFXPPPjoUImZlLjGtKzyBS8SJgJq7CpLgsGKh9QCZdugJyEEOVC16Q==}
