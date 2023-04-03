@@ -11,6 +11,10 @@ export default defineConfig({
           link: "introduce",
         },
         {
+          text: "React原理",
+          link: "react",
+        },
+        {
           text: "基础篇",
           link: "base",
         },
@@ -40,7 +44,7 @@ export default defineConfig({
         },
       ],
       sidebar: {
-        "excellent": [
+        excellent: [
           {
             text: "1 HTML模块",
             items: [
@@ -125,9 +129,9 @@ export default defineConfig({
         ],
       },
       footer: {
-        message: '版权所有',
+        message: "版权所有",
       },
-      outlineTitle: '目录',
+      outlineTitle: "目录",
     },
     title: "前端面试资源",
     icon: "https://www.rspack.dev/static/image/logo.3e9ad8f8.png",
