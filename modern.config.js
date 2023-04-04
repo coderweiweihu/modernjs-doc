@@ -12,7 +12,7 @@ export default defineConfig({
         },
         {
           text: "React原理",
-          link: "react",
+          link: "library",
         },
         {
           text: "基础篇",
@@ -44,6 +44,48 @@ export default defineConfig({
         },
       ],
       sidebar: {
+        library: [
+          {
+            text: "day01",
+            link: "/library/01",
+          },
+          {
+            text: "day02",
+            link: "/library/02",
+          },
+          {
+            text: "day03",
+            link: "/library/03",
+          },
+          {
+            text: "day04",
+            link: "/library/04",
+          },
+          {
+            text: "day05",
+            link: "/library/05",
+          },
+          {
+            text: "day06",
+            link: "/library/06",
+          },
+          {
+            text: "day07",
+            link: "/library/07",
+          },
+          {
+            text: "day08",
+            link: "/library/08",
+          },
+          {
+            text: "day09",
+            link: "/library/09",
+          },
+          {
+            text: "day10",
+            link: "/library/10",
+          },
+        ],
         excellent: [
           {
             text: "1 HTML模块",
@@ -128,10 +170,12 @@ export default defineConfig({
           },
         ],
       },
+      outlineTitle: "目录",
+      prevPageText: "上一页",
+      nextPageText: "下一页",
       footer: {
         message: "版权所有",
       },
-      outlineTitle: "目录",
     },
     title: "前端面试资源",
     icon: "https://www.rspack.dev/static/image/logo.3e9ad8f8.png",
