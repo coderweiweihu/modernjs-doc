@@ -48,42 +48,52 @@ export default defineConfig({
           {
             text: "day01",
             link: "/library/01",
+            items: [],
           },
           {
             text: "day02",
             link: "/library/02",
+            items: [],
           },
           {
             text: "day03",
             link: "/library/03",
+            items: [],
           },
           {
             text: "day04",
             link: "/library/04",
+            items: [],
           },
           {
             text: "day05",
             link: "/library/05",
+            items: [],
           },
           {
             text: "day06",
             link: "/library/06",
+            items: [],
           },
           {
             text: "day07",
             link: "/library/07",
+            items: [],
           },
           {
             text: "day08",
             link: "/library/08",
+            items: [],
           },
           {
             text: "day09",
             link: "/library/09",
+            items: [],
           },
           {
             text: "day10",
             link: "/library/10",
+            items: [],
           },
         ],
         excellent: [
