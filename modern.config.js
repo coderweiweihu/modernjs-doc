@@ -199,6 +199,26 @@ export default defineConfig({
             ],
           },
         ],
+        improve: [
+          {
+            text: "JavaScript基础",
+            link: "/improve",
+            items: [
+              {
+                text: "01 常用数据类型",
+                link: "/improve/01",
+              },
+              {
+                text: "02 数据类型检测方式",
+                link: "/improve/02",
+              },
+              {
+                text: "03 数据类型转换",
+                link: "/improve/03",
+              },
+            ],
+          },
+        ],
       },
       outlineTitle: "目录",
       prevPageText: "上一页",
