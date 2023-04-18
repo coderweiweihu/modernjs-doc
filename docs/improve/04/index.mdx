@@ -1,0 +1,28 @@
+---
+title: 数据类型转换
+---
+
+# this 上下文
+
+> 不同的情况下，`this`的指向是不同的。箭头函数中没有`this`、`arguments`、`super`，
+> 它的`this`是外层代码块的`this`。
+
+```js
+function foo(params) {
+  console.log(this.a);
+}
+
+var a = 1;
+// 直接以函数的形式进行调用
+foo(); // 1
+
+var obj = {
+  a: 2,
+  foo: foo,
+};
+// 以对象的方法进行调用
+obj.foo(); // 2
+
+// 当作构造函数进行调用 在构造函数中，this永远指向构建出来的实例化对象
+const c = new foo();
+```

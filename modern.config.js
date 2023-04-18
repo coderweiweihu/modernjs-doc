@@ -216,6 +216,10 @@ export default defineConfig({
                 text: "03 数据类型转换",
                 link: "/improve/03",
               },
+              {
+                text: "04 this上下文",
+                link: "/improve/04",
+              },
             ],
           },
         ],
