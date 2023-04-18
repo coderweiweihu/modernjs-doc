@@ -33,7 +33,7 @@ Boolean(Symbol()); // true
 Boolean(BigInt(123)); // true
 ```
 
-### 对象转原始类型
+## 对象转原始类型
 
 > 对象在转换类型的时候，会调用内置的`[[ToPrimitive]]`函数，对于该函数来说，算法逻辑一般来说如下：
 
@@ -108,3 +108,132 @@ let a = {
 a > -1; // true
 // 在以上代码中，因为 a 是对象，所以会通过 valueOf 转换为原始类型再比较值
 ```
+
+## 强制类型转换
+
+> 强制类型转换方式包括`Number()`、`parseInt()`、`parseFloat()`、`String()`、`toString()`、`Boolean()`等
+
+**Number()强制类型转换规则**
+
+- 如果是布尔值，`true`和`false`分别转换为`1`和`0`
+- 如果是数字值，直接返回
+- 如果是`null`，返回`0`
+- 如果是`undefined`，返回`NaN`
+- 如果是字符串，遵循下面的规则
+  - 如果是空字符串，返回`0`
+  - 如果是纯数字字符串，返回对应的数字
+  - 如果是纯小数字符串，返回对应的数字
+  - 如果是纯科学计数法字符串，返回对应的数字
+  - 如果是其他字符串，返回`NaN`
+- 如果是对象，遵循下面的规则
+  - 如果是`Date`对象，返回对应的时间戳
+  - 如果是数组，返回`NaN`
+  - 如果是`RegExp`对象，返回`NaN`
+  - 如果是其他对象，返回`NaN`
+- 如果是`Symbol`，返回`NaN`
+
+```js
+// 基本数据类型
+Number(true); // 1
+Number(false); // 0
+Number("0111"); // 111
+Number(null); // 0
+Number(undefined); // NaN
+Number(""); // 0
+Number("0.11"); // 0.11
+Number("1e3"); // 1000
+Number("1a"); // NaN
+Number(-OX11); // -17
+Number(OX11); // 17
+
+// 引用数据类型
+Number({}); // NaN
+Number([]); // 0
+Number([1, 2, 3]); // NaN
+Number(new Date()); // 1620000000000
+Number(/a/g); // NaN
+Number(Symbol()); // NaN
+```
+
+## Object 的转化规则
+
+> 对象转换的规则，会先调用内置的`[ToPrimitive]`函数，然后再根据 ToPrimitive 函数的返回值来进行转换
+
+- 如果部署了`Symbol.toPrimitive`方法，那么就会调用该方法，返回值会被用来转换
+- 如果没有部署`Symbol.toPrimitive`方法，那么就会调用`valueOf`方法，如果返回值是原始类型，那么就会被用来转换
+- 如果`valueOf`方法返回的不是原始类型，那么就会调用`toString`方法，如果返回值是原始类型，那么就会被用来转换
+- 如果`toString`方法返回的不是原始类型，那么就会报错
+
+```js
+var obj = {
+  value: 1,
+  valueOf() {
+    return 2;
+  },
+  toString() {
+    return "3";
+  },
+  [Symbol.toPrimitive]() {
+    return 4;
+  },
+};
+
+// 1、调用 obj[Symbol.toPrimitive]()，返回 4
+console.log(obj + 1); // 5
+
+// 2、如果没有obj[Symbol.toPrimitive]()方法 调用 obj.valueOf()，返回 2
+console.log(obj + 1); // 3
+
+// 3、如果没有obj.valueOf()方法 调用 obj.toString()，返回 "3"
+console.log(obj + 1); // "31"
+
+// 4、如果没有obj.toString()方法，就会将对象转换为字符串，然后进行字符串拼接
+console.log(obj + 1); // "[object Object]1"
+
+// 特殊的案例
+console.log(10 + {}); // "1[object Object]"
+// 解析：10 + {} 转换为 "10[object Object]"，
+// 因为 {} 转换为字符串的时候，会调用 toString 方法，所以会先调用 valueOf 方法，
+// 如果 valueOf 方法返回的不是原始类型，那么就会调用 toString 方法，
+// 如果 toString 方法返回的不是原始类型，那么就会报错
+
+// 特殊的案例
+console.log([1, 2, undefined, 4, 5] + 10); // "1,2,,4,510"
+// 解析：[1, 2, undefined, 4, 5] + 10 转换为 "1,2,,4,510"
+// 因为 [1, 2, undefined, 4, 5] 转换为字符串的时候，会调用 toString 方法，所以会先调用 valueOf 方法，
+// 如果 valueOf 方法返回的不是原始类型，那么就会调用 toString 方法，
+// 如果 toString 方法返回的不是原始类型，那么就会报错
+// 数组转换为string的时候，会调用数组的join方法，如果数组中有undefined，那么就会被转换为空字符串
+```
+
+## `==`隐士类型的转换规则
+
+- 如果类型相同，无需进行类型转换
+- 如果其中一个操作值是`null`或者`undefined`，那么另外一个操作符必须为`null`或者`undefined`，才会返回`true`，否则返回`false`
+- 如果其中一个是`Symbol`类型，那么返回 false
+- 两个操作值如果为`string`和`number`，那么会将`string`转换为`number`，然后再进行比较
+- 如果一个操作值是`boolean`，那么转换成`number`，然后再进行比较
+- 如果一个操作值为`object`且另一方为`string`、`number`或者`symbol`，就会把`object`转为原始类型再进行判断
+
+```js
+null == undefined; // true
+null == 0; // false
+null == ""; // false
+null == false; // false
+null == NaN; // false
+undefined == 0; // false
+undefined == ""; // false
+undefined == false; // false
+undefined == NaN; // false
+"" == 0; // false 字符串转换成number后进行比较
+"123" == 123; // true 字符串转换成number后进行比较
+0 == false; // true fasle转换成number后进行比较
+1 == true; // true  true转换成number后进行比较
+```
+
+`null`与`typeof null ==== 'object'`的解释
+
+> 其实`null`不是对象，虽然`typeof null`会输出`object`,但是这只是`JS`存在的一个悠久 Bug。
+> 在`JS`的最初版本中使用的是 32 位系统，为了性能考虑使用低位存储变量的类型信息，000 开头代表是对象，
+> 然而`null`表示为全零，所以将`null`的类型判断为`object`。
+> 虽然现在的内部类型判断代码已经改变了，但是对于这个`bug`却是一直流传下来。
