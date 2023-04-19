@@ -77,5 +77,58 @@ func.bind(thisArg, arg1, arg2, ...);
 - 在函数中，`this`永远指向最后调用他的那个对象
 - 在构造函数中，`this`指向`new`出来的那个新对象
 - `call/apply/bind`中的`this`被强制绑定在指定的那个对象上
-- 箭头函数中 this 比较特使，箭头函数的 this 为父作用域的`this`，不是调用时的`this`。要知道前 4 种方式都是调用时确定，也就是动态的，而箭头函数的`this`指向是静态的，声明的时候就确定了下来
+- 箭头函数中 this 比较特使，箭头函数的 this 为父作用域的`this`，不是调用时的`this`。前 4 种方式都是调用时确定，也就是动态的，而箭头函数的`this`指向是静态的，声明的时候就确定了下来
 - `call/apply/bind`都是`js`给函数内置的一些 api，调用他们可以为函数执行 this 的执行，同时也可以传参
+
+## 应用场景
+
+### 1. 判断数据类型
+
+> 使用`Object.prototype.toString`来判断类型最合适，借用它我们几乎可以判断所有类型的数据
+
+```js
+function getType(obj) {
+  let type = typeof obj;
+  if (type !== "object") {
+    return type;
+  }
+  return Object.prototype.toString
+    .call(obj)
+    .replace(/^\[object (\S+)\]$/, "$1");
+}
+```
+
+### 2. 类数组借用方法
+
+> 类数组因为不是真正的数组，所以没有数组类型上自带的种种方法，所以我们可以借用数组的方法来操作类数组
+
+```js
+const arrayLike = {
+  0: "java",
+  1: "script",
+  length: 2,
+};
+
+// 借调
+Array.prototype.push.call(arrayLike, "jack", "lily");
+console.log(typeof arrayLike); // 'object'
+console.log(arrayLike);
+// { '0': 'java', '1': 'script', '2': 'jack', '3': 'lily', length: 4 }
+```
+
+### 3. 获取数组的最大/最小值
+
+> 我们可以用`apply`来实现数组中判断最大/最小值，`apply`直接传递数组作为调用方法的参数，可减少一步展开数组的
+
+```js
+const arr = [13, 6, 10, 11, 5];
+
+// 写法1
+const max = Math.max.apply(null, arr);
+const min = Math.max.apply(null, arr);
+
+// 写法2
+const max = Math.max.apply(Math, arr);
+const min = Math.max.apply(Math, arr);
+// 写法1和写法2是等价的，因为Math对象本身没有属性和方法，所以传入null和Math是等价的
+```
