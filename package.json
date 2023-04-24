@@ -1,0 +1,11 @@
+{
+	"scripts": {
+		"dev": "modern dev",
+		"build": "modern build",
+		"preview": "modern preview"
+	},
+	"devDependencies": {
+		"@modern-js/doc-tools": "^2.15.0",
+		"typescript": "^5.0.4"
+	}
+}
